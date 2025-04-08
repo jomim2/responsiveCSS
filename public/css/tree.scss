@@ -1,0 +1,188 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+$navColor : #2d2d2d;
+$engFont :"Quantico",
+sans-serif;
+$korFont: "Hahmlet",
+serif;
+
+body {
+    font-family: $korFont;
+
+    // 모든걸 감싸는 것
+    .layout {
+        overflow: hidden;
+        width: 100vw;
+        height: 100vh;
+
+        // 메뉴 버튼 안보이게 하기
+        .menuBtn {
+            font-family: $engFont;
+            height: 3rem;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            background-color: $navColor;
+            color: #fff;
+            display: none;
+
+            position: relative;
+            z-index: 20;
+        }
+
+        // 메뉴
+        nav {
+            background-color: $navColor;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            // border: 1px dodgerblue solid;
+
+            ul {
+                display: flex;
+                gap: 30px;
+                padding: 10px;
+                font-family: $engFont;
+            }
+
+
+
+            li {
+                font-size: 1.3rem;
+                list-style: none;
+                display: flex;
+
+                a,
+                a:link,
+                a:visited,
+                a:hover,
+                a:active {
+                    color: white;
+                    text-decoration: none;
+                }
+            }
+        }
+
+        // 메인 
+        main {
+            .imgArea {
+                position: relative;
+
+                .treeImg,
+                .textP {
+                    opacity: 0;
+                    transition: opacity 1s ease-in-out;
+                }
+
+                .treeImg {
+                    width: 100vw;
+                    height: 100vh;
+                    background-image: url("../src/img/tree1.JPG");
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                }
+
+                .textP {
+                    font-family: $engFont;
+                    position: absolute;
+                    color: antiquewhite;
+                    font-size: 3rem;
+                    font-weight: 900;
+                    text-shadow: #2d2d2d 2px 2px;
+                    left: 10%;
+                    top: 40%;
+                    transform: translate(-50%, 20%);
+                    opacity: 0;
+                    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+                    -webkit-transform: translate(-50%, 20%);
+                    -moz-transform: translate(-50%, 20%);
+                    -ms-transform: translate(-50%, 20%);
+                    -o-transform: translate(-50%, 20%);
+                }
+
+
+                .treeImg.fade {
+                    opacity: 1;
+                }
+
+                .textP.fade {
+                    opacity: 1;
+                    transform: translate(-50%, 0);
+                    -webkit-transform: translate(-50%, 0);
+                    -moz-transform: translate(-50%, 0);
+                    -ms-transform: translate(-50%, 0);
+                    -o-transform: translate(-50%, 0);
+                }
+            }
+
+            .apiArea {
+                font-family: $korFont;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                border-radius: 10px;
+                opacity: 0.9;
+                width: 5rem;
+                height: 7rem;
+                background-color: #fff;
+                position: absolute;
+                right: 1%;
+                top: 7%;
+                -webkit-border-radius: 10px;
+                -moz-border-radius: 10px;
+                -ms-border-radius: 10px;
+                -o-border-radius: 10px;
+            }
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        .layout {
+            .menuBtn {
+                display: flex;
+            }
+
+            .nav {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                background-color: $navColor;
+                transform: translateY(-100%);
+                transition: transform 0.4s ease-in-out;
+                z-index: 10;
+
+                ul {
+                    padding: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
+
+                    a {
+                        font-size: 1rem;
+                    }
+                }
+
+                &.open {
+                    transform: translateY(20%);
+                    -webkit-transform: translateY(20%);
+                    -moz-transform: translateY(20%);
+                    -ms-transform: translateY(20%);
+                    -o-transform: translateY(20%);
+                }
+            }
+
+            .textP {
+                left: 50% !important;
+                top: 40% !important;
+                font-size: 2rem !important;
+            }
+        }
+    }
+}
